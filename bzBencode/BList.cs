@@ -1,5 +1,5 @@
 ﻿/*
-Copyright (c) 2013, Darren Horrocks
+Copyright (c) 2021, Darren Horrocks
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
