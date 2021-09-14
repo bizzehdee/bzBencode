@@ -32,7 +32,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace System.Net.Torrent.BEncode
+namespace bzBencode
 {
     public static class BencodingUtils
     {
