@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <Version>1.0.3</Version>
+        <Version>1.0.4</Version>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Darren Horrocks</Authors>
         <Description>Lightweight and efficient open source C# bencode library, encodes and decodes bencoding data</Description>
