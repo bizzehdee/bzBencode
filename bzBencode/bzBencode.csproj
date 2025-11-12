@@ -2,7 +2,7 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <Version>1.0.4</Version>
+        <Version>1.0.7</Version>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Darren Horrocks</Authors>
         <Description>Lightweight and efficient open source C# bencode library, encodes and decodes bencoding data</Description>
@@ -12,11 +12,27 @@
         <RepositoryUrl>https://github.com/bizzehdee/bzBencode</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>bencode,bencoder,bencoding,bencoder,bencode-parser</PackageTags>
+
+        <!-- Build + debug configuration -->
+        <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+        <Optimize>true</Optimize>
+        <DebugType>embedded</DebugType> <!-- Embed symbols directly in DLLs -->
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+
+        <!-- NuGet packaging -->
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <IncludeSymbols>true</IncludeSymbols>
+        <IncludeSource>true</IncludeSource>
     </PropertyGroup>
     <ItemGroup>
       <None Include="..\LICENSE">
         <Pack>True</Pack>
         <PackagePath></PackagePath>
       </None>
+    </ItemGroup>
+    <ItemGroup>
+        <!-- SourceLink package -->
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.*" PrivateAssets="All" />
     </ItemGroup>
 </Project>

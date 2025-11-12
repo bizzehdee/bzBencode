@@ -116,13 +116,13 @@ namespace bzBencode
 
             foreach (var key in Keys)
             {
-                if (!other.ContainsKey(key))
+                if (!other.TryGetValue(key, out var value))
                 {
                     return false;
                 }
 
                 // Dictionaries cannot have nulls
-                if (!other[key].Equals(this[key]))
+                if (!value.Equals(this[key]))
                 {
                     // Not ok
                     return false;
@@ -150,7 +150,7 @@ namespace bzBencode
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             base.Add(key, value);
@@ -170,7 +170,7 @@ namespace bzBencode
             {
                 if (value == null)
                 {
-					throw new ArgumentNullException("value");
+					throw new ArgumentNullException(nameof(value));
                 }
 
                 base[index] = value;

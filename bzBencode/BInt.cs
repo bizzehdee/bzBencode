@@ -108,7 +108,7 @@ namespace bzBencode
         {
             if (other == null)
             {
-                throw new ArgumentNullException("other");
+                throw new ArgumentNullException(nameof(other));
             }
 
             if (Value < other.Value)
@@ -150,7 +150,7 @@ namespace bzBencode
 
         public override string ToString()
         {
-            return string.Format("{0}", Value);
+            return $"{Value}";
         }
 
         public static implicit operator BInt(long x)

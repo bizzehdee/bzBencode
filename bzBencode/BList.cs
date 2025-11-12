@@ -139,7 +139,7 @@ namespace bzBencode
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             base.Add(value);
@@ -155,14 +155,14 @@ namespace bzBencode
         {
             if (values == null)
             {
-                throw new ArgumentNullException("values");
+                throw new ArgumentNullException(nameof(values));
             }
 
             foreach (var value in values)
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("values");
+                    throw new ArgumentNullException(nameof(values));
                 }
 
                 base.Add(value);
@@ -183,7 +183,7 @@ namespace bzBencode
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 base[index] = value;
