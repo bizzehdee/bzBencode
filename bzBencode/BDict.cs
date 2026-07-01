@@ -31,6 +31,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace bzBencode
 {
@@ -76,8 +77,9 @@ namespace bzBencode
             // Write header
             writer.Write('d');
 
-            // Write elements
-            foreach (var item in this)
+            // Write elements in sorted key order, as required by the bencode spec
+            // (info-hash calculation depends on this being canonical).
+            foreach (var item in this.OrderBy(kv => kv.Key, StringComparer.Ordinal))
             {
                 // Write key
                 var key = new BString

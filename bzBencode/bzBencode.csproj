@@ -2,7 +2,7 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <Version>1.0.7</Version>
+        <Version>0.0.0</Version>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Darren Horrocks</Authors>
         <Description>Lightweight and efficient open source C# bencode library, encodes and decodes bencoding data</Description>

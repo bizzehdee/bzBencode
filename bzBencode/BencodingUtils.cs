@@ -61,8 +61,16 @@ namespace bzBencode
 
         static BencodingUtils()
         {
-            // Extended ASCII encoding - http://stackoverflow.com/questions/4623650/encode-to-single-byte-extended-ascii-values
-            ExtendedASCIIEncoding = Encoding.GetEncoding(1252);
+            // Bencode strings are binary and must survive a lossless byte<->char round-trip.
+            // ISO-8859-1 (Latin-1, code page 28591) maps bytes 0x00-0xFF 1:1 to U+0000-U+00FF,
+            // so it is a true 8-bit passthrough. It is also supported natively on all runtimes
+            // (including .NET Core/.NET 5+) WITHOUT registering CodePagesEncodingProvider.
+            //
+            // The previous choice, Windows-1252, was both (a) unavailable on .NET Core unless
+            // the caller registered the code-pages provider (otherwise this ctor threw
+            // NotSupportedException and every Encode/Decode failed), and (b) not a clean
+            // passthrough — 0x81, 0x8D, 0x8F, 0x90 and 0x9D are undefined and were mangled.
+            ExtendedASCIIEncoding = Encoding.GetEncoding(28591);
         }
 
         /// <summary>
@@ -225,7 +233,10 @@ namespace bzBencode
             var infoBytes = EncodeBytes(torrentInfoDict);
 
             // Hash the encoded dictionary
-            return new SHA1CryptoServiceProvider().ComputeHash(infoBytes);
+            using (var sha1 = SHA1.Create())
+            {
+                return sha1.ComputeHash(infoBytes);
+            }
         }
 	}
 }

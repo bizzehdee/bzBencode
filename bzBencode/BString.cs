@@ -85,10 +85,9 @@ namespace bzBencode
             bytesConsumed++;
 
             // Read chars out
-            //char[] stringData = new char[int.Parse(numberLength)];
-            //inputStream.Read(stringData, 0, stringData.Length);
-            var stringData = inputStream.ReadBytes(int.Parse(numberLength));
-            bytesConsumed += int.Parse(numberLength);
+            var length = int.Parse(numberLength);
+            var stringData = inputStream.ReadBytes(length);
+            bytesConsumed += length;
             // Return
             return new BString { Value = BencodingUtils.ExtendedASCIIEncoding.GetString(stringData), ByteValue = stringData };
         }
